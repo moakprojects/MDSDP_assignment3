@@ -1,0 +1,39 @@
+grammar org.xtext.assignment.Three with org.eclipse.xtext.common.Terminals
+
+generate three "http://www.xtext.org/assignment/Three"
+
+ExpCollection:
+	collection += MathExp*
+;
+
+MathExp:
+	'result' label=STRING 'is' exp=Exp
+;
+
+Exp returns Expression:
+	Factor (('+' {Plus.left=current} | '-' {Minus.left=current}) right=Factor)*
+;
+
+Factor returns Expression:
+	Primary (('*' {Mult.left=current} | '/' {Div.left=current}) right=Primary)*	
+;
+
+Primary returns Expression:
+	Number | Parenthesis | VariableBinding | VariableUse
+;
+
+VariableUse returns Expression:
+	{Var} id=ID
+;
+
+VariableBinding returns Expression:
+	{Let} 'let' id=ID '=' binding=Exp 'in' body=Exp 'end'
+;
+
+Parenthesis returns Expression:
+	'(' Exp ')'
+;
+
+Number returns Expression:
+	{Num} value=INT
+;

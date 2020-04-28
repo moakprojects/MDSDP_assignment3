@@ -1,0 +1,2 @@
+result "first expression" is 6 * (3 + 2) - 12
+result "second expression" is 45 - (32 - 11)
