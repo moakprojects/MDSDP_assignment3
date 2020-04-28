@@ -38,9 +38,9 @@ class ThreeGenerator extends AbstractGenerator {
 		
 		public class MathCalculation {
 			public void calculate() {
-				«FOR math : mathExps»
-				System.out.println("«math.label» = " + «math.compute»);
-				«ENDFOR»
+				Â«FOR math : mathExpsÂ»
+				System.out.println("Â«math.labelÂ» = " + Â«math.computeÂ»);
+				Â«ENDFORÂ»
 			}
 		}
 		'''
